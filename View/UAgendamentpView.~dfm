@@ -1,10 +1,10 @@
 object frmAgendamento: TfrmAgendamento
-  Left = 953
+  Left = 947
   Top = 166
   BorderStyle = bsSingle
   Caption = 'Agendamento M'#233'dico'
   ClientHeight = 466
-  ClientWidth = 580
+  ClientWidth = 586
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -22,7 +22,7 @@ object frmAgendamento: TfrmAgendamento
   object pnlAgendamento: TPanel
     Left = 0
     Top = 0
-    Width = 580
+    Width = 586
     Height = 41
     Align = alTop
     TabOrder = 0
@@ -43,7 +43,7 @@ object frmAgendamento: TfrmAgendamento
   object pnlBotoes: TPanel
     Left = 0
     Top = 392
-    Width = 580
+    Width = 586
     Height = 74
     Align = alBottom
     TabOrder = 1
@@ -114,7 +114,7 @@ object frmAgendamento: TfrmAgendamento
   object pnlDados: TPanel
     Left = 0
     Top = 41
-    Width = 580
+    Width = 586
     Height = 351
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
@@ -169,7 +169,7 @@ object frmAgendamento: TfrmAgendamento
       Top = 120
       Width = 95
       Height = 13
-      Caption = 'Nome do medico'
+      Caption = 'Nome do m'#233'dico'
     end
     object Label5: TLabel
       Left = 30
@@ -255,6 +255,7 @@ object frmAgendamento: TfrmAgendamento
       ParentFont = False
       TabOrder = 3
       Text = '  /  /    '
+      OnExit = edtDataExit
     end
     object edtHora: TMaskEdit
       Left = 199

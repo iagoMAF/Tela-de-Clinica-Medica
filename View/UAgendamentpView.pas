@@ -192,6 +192,27 @@ begin
             (cmbConsulta.SetFocus);
       end;
 
+      etAlterar:
+      begin
+         if (edtCodigo.Text <> EmptyStr) then
+         begin
+            CamposEnabled(True);
+            edtCodigo.Enabled  := False;
+            btnAlterar.Enabled := False;
+
+            if (cmbConsulta.CanFocus) then
+               (cmbConsulta.SetFocus);
+
+         end
+         else
+         begin
+            edtCodigo.Enabled  := True;
+            btnAlterar.Enabled := False;
+
+            if (edtCodigo.CanFocus) then
+               (edtCodigo.SetFocus);
+         end;
+      end;
 
    end;
 end;
@@ -210,7 +231,7 @@ end;
 procedure TfrmAgendamento.btnAlterarClick(Sender: TObject);
 begin
    vEstadoTela := etAlterar;
-   DefineEstadoTela
+   DefineEstadoTela;
 end;
 
 procedure TfrmAgendamento.btnExcluirClick(Sender: TObject);
