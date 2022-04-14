@@ -51,6 +51,7 @@ type
     procedure btnConfirmarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure edtHoraExit(Sender: TObject);
+    procedure edtDataExit(Sender: TObject);
   private
     { Private declarations }
     vKey        : Word;
@@ -59,7 +60,9 @@ type
     procedure CamposEnabled(pOpcao : Boolean);
     procedure LimparTela;
     procedure DefineEstadoTela;
-    function ValidaHora(hr:String):boolean;
+
+    function ValidaHora(hr:String): boolean;
+    function ValidaData(dt:String): Boolean;
 
 
   public
@@ -235,21 +238,16 @@ end;
 
 function TfrmAgendamento.ValidaHora(hr: String): boolean;
 begin
-   result:=true;
+   result := true;
    
    if trim(hr) <> '' then
    begin
-
       try
-
          StrToTime(Trim(hr));
-
       except
          on EConvertError do
          begin
-
-           result:=false;
-
+           result := false;
          end;
       end;
    end;
@@ -260,12 +258,42 @@ begin
    if (ValidaHora(edtHora.Text)) = False then
    begin
       TMessageUtil.Alerta(
-         'A hora digitada é invalida');
+         'Hora invalida. Confira os números inseridos.');
 
       if (edtHora.CanFocus) then
          (edtHora.SetFocus);
    end;
 
+end;
+
+function TfrmAgendamento.ValidaData(dt: String): Boolean;
+begin
+
+   Result := True;
+
+   if trim(dt) <> '' then
+   begin
+      try
+         StrToDate(Trim(dt));
+      except
+         on EConvertError do
+         begin
+           result := false;
+         end;
+      end;
+   end;
+end;
+
+procedure TfrmAgendamento.edtDataExit(Sender: TObject);
+begin
+   if (ValidaData(edtData.Text)) = False then
+   begin
+      TMessageUtil.Alerta(
+         'Data invalida. Confira os números inseridos.');
+
+      if (edtData.CanFocus) then
+         (edtData.SetFocus);
+   end;
 end;
 
 end.

@@ -50,6 +50,7 @@ type
     procedure btnConsultarClick(Sender: TObject);
     procedure btnConfirmarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
+    procedure edtHoraExit(Sender: TObject);
   private
     { Private declarations }
     vKey        : Word;
@@ -58,6 +59,7 @@ type
     procedure CamposEnabled(pOpcao : Boolean);
     procedure LimparTela;
     procedure DefineEstadoTela;
+    function ValidaHora(hr:String):boolean;
 
 
   public
@@ -229,6 +231,41 @@ procedure TfrmAgendamento.btnCancelarClick(Sender: TObject);
 begin
    vEstadoTela := etPadrao;
    DefineEstadoTela;
+end;
+
+function TfrmAgendamento.ValidaHora(hr: String): boolean;
+begin
+   result:=true;
+   
+   if trim(hr) <> '' then
+   begin
+
+      try
+
+         StrToTime(Trim(hr));
+
+      except
+         on EConvertError do
+         begin
+
+           result:=false;
+
+         end;
+      end;
+   end;
+end;
+
+procedure TfrmAgendamento.edtHoraExit(Sender: TObject);
+begin
+   if (ValidaHora(edtHora.Text)) = False then
+   begin
+      TMessageUtil.Alerta(
+         'A hora digitada é invalida');
+
+      if (edtHora.CanFocus) then
+         (edtHora.SetFocus);
+   end;
+
 end;
 
 end.

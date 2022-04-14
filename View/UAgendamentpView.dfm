@@ -255,6 +255,7 @@ object frmAgendamento: TfrmAgendamento
       ParentFont = False
       TabOrder = 3
       Text = '  /  /    '
+      OnExit = edtDataExit
     end
     object edtHora: TMaskEdit
       Left = 199
