@@ -1,6 +1,6 @@
 object frmAgendamento: TfrmAgendamento
-  Left = 947
-  Top = 166
+  Left = 187
+  Top = 335
   BorderStyle = bsSingle
   Caption = 'Agendamento M'#233'dico'
   ClientHeight = 466

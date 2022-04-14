@@ -214,6 +214,30 @@ begin
          end;
       end;
 
+      etConsultar:
+      begin
+         CamposEnabled(False);
+
+         if (edtCodigo.Text <> EmptyStr) then
+         begin
+            edtCodigo.Enabled    := False;
+            btnConsultar.Enabled := True;
+            btnAlterar.Enabled   := True;
+            btnExcluir.Enabled   := True;
+
+            if (btnAlterar.CanFocus) then
+               (btnAlterar.SetFocus);
+         end
+         else
+         begin
+            lblCodigo.Enabled    := True;
+            edtCodigo.Enabled    := True;
+
+            if (edtCodigo.CanFocus) then
+               (edtCodigo.SetFocus);
+         end;
+      end;
+
    end;
 end;
 

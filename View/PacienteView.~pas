@@ -246,7 +246,7 @@ begin
             edtCodigo.Enabled    := False;
             btnAlterar.Enabled   := True;
             btnExcluir.Enabled   := True;
-            btnExcluir.Enabled   := False;
+            //btnExcluir.Enabled   := False;
 
             if (btnAlterar.CanFocus) then
                (btnAlterar.SetFocus);

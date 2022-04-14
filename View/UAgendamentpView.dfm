@@ -1,6 +1,6 @@
 object frmAgendamento: TfrmAgendamento
-  Left = 1097
-  Top = 306
+  Left = 345
+  Top = 302
   BorderStyle = bsSingle
   Caption = 'Agendamento M'#233'dico'
   ClientHeight = 466
@@ -318,22 +318,22 @@ object frmAgendamento: TfrmAgendamento
       ParentFont = False
       TabOrder = 6
       Items.Strings = (
-        'Especialidades m'#233'dica, '#225'reas de atua'#231#227'o e formas de acesso'
-        'Especialista em Acupuntura'
-        'Especialista em Alergia e Imunologia'
-        'Especialista em Anestesiologista'
-        'Especialista em Angiologia'
-        'Especialista em Cardiologia'
-        'Especialista em Cirurgia Cardiovascular'
-        'Especialista em Cirurgia de M'#227'o'
-        'Especialista em Cirurgia de Cabe'#231'a e Pesco'#231'o'
-        'Especialista em Cirurgia do Aparelho Digestivo'
-        'Especialista em Cirurgia Geral'
-        'Especialista em Cirurgia Oncol'#243'gica'
-        'Especialista em Cirurgia Pedi'#225'trica'
-        'Especialista em Cirurgia Pl'#225'stica'
-        'Especialista em Cirurgia Tor'#225'cica'
-        'Especialista em Cirurgia Vascular')
+        'Clinico Geral'
+        'Acupuntura'
+        'Alergia e Imunologia'
+        'Anestesiologista'
+        'Angiologia'
+        'Cardiologia'
+        'Cirurgia Cardiovascular'
+        'Cirurgia de M'#227'o'
+        'Cirurgia de Cabe'#231'a e Pesco'#231'o'
+        'Cirurgia do Aparelho Digestivo'
+        'Cirurgia Geral'
+        'Cirurgia Oncol'#243'gica'
+        'Cirurgia Pedi'#225'trica'
+        'Cirurgia Pl'#225'stica'
+        'Cirurgia Tor'#225'cica'
+        'Cirurgia Vascular')
     end
     object Memo1: TMemo
       Left = 142

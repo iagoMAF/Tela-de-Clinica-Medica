@@ -1,6 +1,6 @@
 object frmPaciente: TfrmPaciente
-  Left = 919
-  Top = 247
+  Left = 775
+  Top = 355
   BorderStyle = bsSingle
   Caption = 'Cadastro de Paciente'
   ClientHeight = 305
