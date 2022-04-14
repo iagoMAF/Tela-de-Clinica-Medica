@@ -1,6 +1,6 @@
 object frmAgendamento: TfrmAgendamento
-  Left = 513
-  Top = 227
+  Left = 953
+  Top = 166
   BorderStyle = bsSingle
   Caption = 'Agendamento M'#233'dico'
   ClientHeight = 466
@@ -14,7 +14,9 @@ object frmAgendamento: TfrmAgendamento
   KeyPreview = True
   OldCreateOrder = False
   Position = poDesktopCenter
+  OnClose = FormClose
   OnKeyDown = FormKeyDown
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object pnlAgendamento: TPanel
@@ -52,6 +54,7 @@ object frmAgendamento: TfrmAgendamento
       Height = 25
       Caption = 'Incluir'
       TabOrder = 0
+      OnClick = btnIncluirClick
     end
     object btnAlterar: TButton
       Left = 199
@@ -60,6 +63,7 @@ object frmAgendamento: TfrmAgendamento
       Height = 25
       Caption = 'Alterar'
       TabOrder = 1
+      OnClick = btnAlterarClick
     end
     object btnExcluir: TButton
       Left = 280
@@ -68,6 +72,7 @@ object frmAgendamento: TfrmAgendamento
       Height = 25
       Caption = 'Excluir'
       TabOrder = 2
+      OnClick = btnExcluirClick
     end
     object btnConsultar: TButton
       Left = 279
@@ -76,6 +81,7 @@ object frmAgendamento: TfrmAgendamento
       Height = 25
       Caption = 'Consultar'
       TabOrder = 3
+      OnClick = btnConsultarClick
     end
     object btnSair: TButton
       Left = 471
@@ -93,6 +99,7 @@ object frmAgendamento: TfrmAgendamento
       Height = 25
       Caption = 'Confirmar'
       TabOrder = 4
+      OnClick = btnConfirmarClick
     end
     object btnCancelar: TButton
       Left = 472
@@ -101,6 +108,7 @@ object frmAgendamento: TfrmAgendamento
       Height = 25
       Caption = 'Cancelar'
       TabOrder = 5
+      OnClick = btnCancelarClick
     end
   end
   object pnlDados: TPanel

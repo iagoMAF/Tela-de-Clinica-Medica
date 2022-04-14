@@ -271,6 +271,7 @@ object frmAgendamento: TfrmAgendamento
       ParentFont = False
       TabOrder = 4
       Text = '  :  '
+      OnExit = edtHoraExit
     end
     object edtMedico: TEdit
       Left = 134
