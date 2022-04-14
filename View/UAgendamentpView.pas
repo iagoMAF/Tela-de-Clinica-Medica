@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ExtCtrls, Mask;
+  Dialogs, StdCtrls, ExtCtrls, Mask, uMessageUtil, UEnumerationUtil,
+  UClassFuncoes;
 
 type
   TfrmAgendamento = class(TForm)
@@ -33,9 +34,32 @@ type
     cmbEspecialidade: TComboBox;
     Label6: TLabel;
     Memo1: TMemo;
+    btnConfirmar: TButton;
+    btnCancelar: TButton;
+    Aviso: TLabel;
+    Timer1: TTimer;
     procedure btnSairClick(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormShow(Sender: TObject);
+    procedure btnIncluirClick(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure btnConsultarClick(Sender: TObject);
+    procedure btnConfirmarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
   private
     { Private declarations }
+    vKey        : Word;
+    vEstadoTela : TEstadoTela;
+
+    procedure CamposEnabled(pOpcao : Boolean);
+    procedure LimparTela;
+    procedure DefineEstadoTela;
+
+
   public
     { Public declarations }
   end;
@@ -50,6 +74,161 @@ implementation
 procedure TfrmAgendamento.btnSairClick(Sender: TObject);
 begin
    Close;
+end;
+
+procedure TfrmAgendamento.Timer1Timer(Sender: TObject);
+begin
+   Aviso.Visible := not Aviso.Visible ;
+end;
+
+procedure TfrmAgendamento.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+   vKey := Key;
+
+   case vKey of
+
+      VK_RETURN:
+      begin
+         Perform(WM_NEXTDLGCTL, 0, 0);
+      end;
+
+      VK_ESCAPE:
+      begin
+         if (TMessageUtil.Pergunta('Deseja sair dessa rotina?')) then
+            Close;
+      end;
+
+   end;
+end;
+
+procedure TfrmAgendamento.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+   Action         := caFree;
+   frmAgendamento := nil;
+end;
+
+procedure TfrmAgendamento.CamposEnabled(pOpcao: Boolean);
+var
+   i : Integer;
+begin
+   for i := 0 to pred(ComponentCount) do
+   begin
+
+      if (Components[i] is TEdit) then
+         (Components[i] as TEdit).Enabled     := pOpcao;
+
+      if (Components[i] is TMaskEdit) then
+         (Components[i] as TMaskEdit).Enabled := pOpcao;
+
+      if (Components[i] is TComboBox) then
+         (Components[i] as TComboBox).Enabled := pOpcao;
+
+      if (Components[i] is TMemo) then
+         (Components[i] as TMemo).Enabled     := pOpcao;
+   end;
+end;
+
+procedure TfrmAgendamento.LimparTela;
+var
+   i : Integer;
+begin
+   for i := 0 to pred(ComponentCount) do
+   begin
+      if (Components[i] is TEdit) then
+         (Components[i] as TEdit).Text     := EmptyStr;
+
+      if (Components[i] is TMaskEdit) then
+         (Components[i] as TMaskEdit).Text := EmptyStr;
+
+      if (Components[i] is TComboBox) then
+         (Components[i] as TComboBox).Text := EmptyStr;
+
+      if (Components[i] is TMemo) then
+         (Components[i] as TMemo).Text     := EmptyStr;
+   end;
+end;
+
+procedure TfrmAgendamento.DefineEstadoTela;
+begin
+   btnIncluir.Enabled   := (vEstadoTela in [etPadrao]);
+   btnAlterar.Enabled   := (vEstadoTela in [etPadrao]);
+   btnExcluir.Enabled   := (vEstadoTela in [etPadrao]);
+   btnConsultar.Enabled := (vEstadoTela in [etPadrao]);
+
+   btnConfirmar.Enabled :=
+      vEstadoTela in [etIncluir, etAlterar, etExcluir, etConsultar];
+
+   btnCancelar.Enabled  :=
+      vEstadoTela in [etIncluir, etAlterar, etExcluir, etConsultar];
+
+   case vEstadoTela of
+
+      etPadrao:
+      begin
+         CamposEnabled(False);
+         LimparTela;
+
+         if (frmAgendamento <> nil) and
+            (frmAgendamento.Active) and
+            (btnIncluir.CanFocus)   then
+               (btnIncluir.SetFocus);
+
+         Application.ProcessMessages;
+      end;
+
+      etIncluir:
+      begin
+         CamposEnabled(True);
+         edtCodigo.Enabled := False;
+
+         if (cmbConsulta.CanFocus) then
+            (cmbConsulta.SetFocus);
+      end;
+
+
+   end;
+end;
+
+procedure TfrmAgendamento.FormShow(Sender: TObject);
+begin
+   DefineEstadoTela;
+end;
+
+procedure TfrmAgendamento.btnIncluirClick(Sender: TObject);
+begin
+   vEstadoTela := etIncluir;
+   DefineEstadoTela;
+end;
+
+procedure TfrmAgendamento.btnAlterarClick(Sender: TObject);
+begin
+   vEstadoTela := etAlterar;
+   DefineEstadoTela
+end;
+
+procedure TfrmAgendamento.btnExcluirClick(Sender: TObject);
+begin
+   vEstadoTela := etExcluir;
+   DefineEstadoTela;
+end;
+
+procedure TfrmAgendamento.btnConsultarClick(Sender: TObject);
+begin
+   vEstadoTela := etConsultar;
+   DefineEstadoTela;
+end;
+
+procedure TfrmAgendamento.btnConfirmarClick(Sender: TObject);
+begin
+   //Confirmar
+end;
+
+procedure TfrmAgendamento.btnCancelarClick(Sender: TObject);
+begin
+   vEstadoTela := etPadrao;
+   DefineEstadoTela;
 end;
 
 end.

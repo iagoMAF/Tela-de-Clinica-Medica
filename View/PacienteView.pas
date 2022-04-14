@@ -106,7 +106,7 @@ end;
 procedure TfrmPaciente.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
-   Action := caFree;
+   Action      := caFree;
    frmPaciente := nil;
    // Com isso vai encerrar a rotina
 end;
@@ -177,10 +177,10 @@ begin
          LimparTela;            // Limpa a tela
 
 
-         if (frmPaciente <> nil) and
-            (frmPaciente.Active) and
+         if (frmPaciente <> nil)  and
+            (frmPaciente.Active)  and
             (btnIncluir.CanFocus) then
-            (btnIncluir.SetFocus);
+               (btnIncluir.SetFocus);
 
          Application.ProcessMessages;
       end;

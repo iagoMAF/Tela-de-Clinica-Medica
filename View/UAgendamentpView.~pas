@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ExtCtrls, Mask;
+  Dialogs, StdCtrls, ExtCtrls, Mask, uMessageUtil;
 
 type
   TfrmAgendamento = class(TForm)
@@ -33,9 +33,19 @@ type
     cmbEspecialidade: TComboBox;
     Label6: TLabel;
     Memo1: TMemo;
+    btnConfirmar: TButton;
+    btnCancelar: TButton;
+    Aviso: TLabel;
+    Timer1: TTimer;
     procedure btnSairClick(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
+    vKey      : Word;
+
+
   public
     { Public declarations }
   end;
@@ -50,6 +60,32 @@ implementation
 procedure TfrmAgendamento.btnSairClick(Sender: TObject);
 begin
    Close;
+end;
+
+procedure TfrmAgendamento.Timer1Timer(Sender: TObject);
+begin
+   Aviso.Visible := not Aviso.Visible ;
+end;
+
+procedure TfrmAgendamento.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+   vKey := Key;
+
+   case vKey of
+
+      VK_RETURN:
+      begin
+         Perform(WM_NEXTDLGCTL, 0, 0);
+      end;
+
+      VK_ESCAPE:
+      begin
+         if (TMessageUtil.Pergunta('Deseja sair dessa rotina?')) then
+            Close;
+      end;
+
+   end;
 end;
 
 end.

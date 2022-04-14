@@ -1,24 +1,26 @@
 object frmAgendamento: TfrmAgendamento
-  Left = 475
-  Top = 200
+  Left = 513
+  Top = 227
   BorderStyle = bsSingle
   Caption = 'Agendamento M'#233'dico'
-  ClientHeight = 427
-  ClientWidth = 565
+  ClientHeight = 466
+  ClientWidth = 580
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = False
   Position = poDesktopCenter
+  OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
   object pnlAgendamento: TPanel
     Left = 0
     Top = 0
-    Width = 565
+    Width = 580
     Height = 41
     Align = alTop
     TabOrder = 0
@@ -38,13 +40,13 @@ object frmAgendamento: TfrmAgendamento
   end
   object pnlBotoes: TPanel
     Left = 0
-    Top = 383
-    Width = 565
-    Height = 44
+    Top = 392
+    Width = 580
+    Height = 74
     Align = alBottom
     TabOrder = 1
     object btnIncluir: TButton
-      Left = 152
+      Left = 200
       Top = 7
       Width = 75
       Height = 25
@@ -52,15 +54,15 @@ object frmAgendamento: TfrmAgendamento
       TabOrder = 0
     end
     object btnAlterar: TButton
-      Left = 311
-      Top = 7
+      Left = 199
+      Top = 39
       Width = 75
       Height = 25
       Caption = 'Alterar'
       TabOrder = 1
     end
     object btnExcluir: TButton
-      Left = 232
+      Left = 280
       Top = 7
       Width = 75
       Height = 25
@@ -68,8 +70,8 @@ object frmAgendamento: TfrmAgendamento
       TabOrder = 2
     end
     object btnConsultar: TButton
-      Left = 391
-      Top = 7
+      Left = 279
+      Top = 39
       Width = 75
       Height = 25
       Caption = 'Consultar'
@@ -77,19 +79,35 @@ object frmAgendamento: TfrmAgendamento
     end
     object btnSair: TButton
       Left = 471
-      Top = 7
+      Top = 39
       Width = 75
       Height = 25
       Caption = 'Sair'
-      TabOrder = 4
+      TabOrder = 6
       OnClick = btnSairClick
+    end
+    object btnConfirmar: TButton
+      Left = 392
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = 'Confirmar'
+      TabOrder = 4
+    end
+    object btnCancelar: TButton
+      Left = 472
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = 'Cancelar'
+      TabOrder = 5
     end
   end
   object pnlDados: TPanel
     Left = 0
     Top = 41
-    Width = 565
-    Height = 342
+    Width = 580
+    Height = 351
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -99,14 +117,14 @@ object frmAgendamento: TfrmAgendamento
     ParentFont = False
     TabOrder = 2
     object lblCodigo: TLabel
-      Left = 16
+      Left = 30
       Top = 24
       Width = 40
       Height = 13
       Caption = 'Codigo'
     end
     object Label2: TLabel
-      Left = 16
+      Left = 30
       Top = 88
       Width = 28
       Height = 13
@@ -126,7 +144,7 @@ object frmAgendamento: TfrmAgendamento
       Caption = 'Hora'
     end
     object Label4: TLabel
-      Left = 16
+      Left = 30
       Top = 56
       Width = 33
       Height = 13
@@ -139,28 +157,28 @@ object frmAgendamento: TfrmAgendamento
       ParentFont = False
     end
     object lblMedico: TLabel
-      Left = 16
+      Left = 30
       Top = 120
       Width = 95
       Height = 13
       Caption = 'Nome do medico'
     end
     object Label5: TLabel
-      Left = 16
+      Left = 30
       Top = 152
       Width = 80
       Height = 13
       Caption = 'Especialidade'
     end
     object lblConsuta: TLabel
-      Left = 142
+      Left = 156
       Top = 24
       Width = 97
       Height = 13
       Caption = 'Tipo de Consulta'
     end
     object Label6: TLabel
-      Left = 16
+      Left = 30
       Top = 184
       Width = 52
       Height = 13
@@ -172,64 +190,122 @@ object frmAgendamento: TfrmAgendamento
       Font.Style = [fsBold]
       ParentFont = False
     end
+    object Aviso: TLabel
+      Left = 8
+      Top = 216
+      Width = 134
+      Height = 104
+      Caption = 
+        'O AGENDAMENTO'#13#10'deve ser feito mesmo'#13#10'se a consulta '#13#10'estiver em ' +
+        'andamento,'#13#10'devido a casos'#13#10'de urg'#234'ncia, mantenha'#13#10'os dados das ' +
+        'consultas'#13#10'ORGANIZADOS!'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clRed
+      Font.Height = -3
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
     object edtCodigo: TEdit
-      Left = 61
+      Left = 75
       Top = 20
       Width = 73
       Height = 21
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 0
     end
     object edtNome: TEdit
-      Left = 55
+      Left = 69
       Top = 52
       Width = 490
       Height = 21
-      TabOrder = 1
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
     end
     object edtData: TMaskEdit
-      Left = 54
+      Left = 68
       Top = 85
       Width = 83
       Height = 21
       EditMask = '00/00/0000;1;_'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
       MaxLength = 10
-      TabOrder = 2
+      ParentFont = False
+      TabOrder = 3
       Text = '  /  /    '
     end
     object edtHora: TMaskEdit
-      Left = 185
+      Left = 199
       Top = 85
       Width = 41
       Height = 21
       EditMask = '00:00;1;_'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
       MaxLength = 5
-      TabOrder = 3
+      ParentFont = False
+      TabOrder = 4
       Text = '  :  '
     end
     object edtMedico: TEdit
-      Left = 120
+      Left = 134
       Top = 116
       Width = 425
       Height = 21
-      TabOrder = 4
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 5
     end
     object cmbConsulta: TComboBox
-      Left = 246
+      Left = 260
       Top = 20
       Width = 145
       Height = 21
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
       ItemHeight = 13
-      TabOrder = 5
+      ParentFont = False
+      TabOrder = 1
       Items.Strings = (
         'Conv'#234'nio'
         'Particular')
     end
     object cmbEspecialidade: TComboBox
-      Left = 120
+      Left = 134
       Top = 149
       Width = 425
       Height = 21
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
       ItemHeight = 13
+      ParentFont = False
       TabOrder = 6
       Items.Strings = (
         'Especialidades m'#233'dica, '#225'reas de atua'#231#227'o e formas de acesso'
@@ -250,12 +326,23 @@ object frmAgendamento: TfrmAgendamento
         'Especialista em Cirurgia Vascular')
     end
     object Memo1: TMemo
-      Left = 120
+      Left = 142
       Top = 184
-      Width = 425
+      Width = 417
       Height = 145
       Hint = #13#10
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 7
     end
+  end
+  object Timer1: TTimer
+    Interval = 3000
+    OnTimer = Timer1Timer
+    Top = 361
   end
 end

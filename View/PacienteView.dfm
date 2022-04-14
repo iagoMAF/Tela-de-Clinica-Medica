@@ -1,6 +1,6 @@
 object frmPaciente: TfrmPaciente
-  Left = 967
-  Top = 339
+  Left = 919
+  Top = 247
   BorderStyle = bsSingle
   Caption = 'Cadastro de Paciente'
   ClientHeight = 305
@@ -127,14 +127,14 @@ object frmPaciente: TfrmPaciente
     object lblCPF: TLabel
       Left = 184
       Top = 112
-      Width = 20
+      Width = 24
       Height = 13
       Caption = 'CPF'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'MS Sans Serif'
-      Font.Style = []
+      Font.Style = [fsBold]
       ParentFont = False
     end
     object lblEndereco: TLabel
