@@ -231,7 +231,7 @@ end;
 procedure TfrmAgendamento.btnAlterarClick(Sender: TObject);
 begin
    vEstadoTela := etAlterar;
-   //DefineEstadoTela
+   DefineEstadoTela;
 end;
 
 procedure TfrmAgendamento.btnExcluirClick(Sender: TObject);
